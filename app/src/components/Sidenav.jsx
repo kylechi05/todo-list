@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 const lists = [
-    {listName: 'My Day', icon: 'wb_sunny', hover: 'hover:bg-indigo-200', deletable: false},
-    {listName: 'Important', icon: 'star', hover: 'hover:bg-amber-200', deletable: false},
-    {listName: 'Tasks', icon: 'home', hover: 'hover:bg-lime-200', deletable: false}
+    {listName: 'My Day', icon: 'wb_sunny', hover: 'hover:bg-lavender-pastel', deletable: false},
+    {listName: 'Important', icon: 'star', hover: 'hover:bg-salmon-pastel', deletable: false},
+    {listName: 'Tasks', icon: 'home', hover: 'hover:bg-green-pastel', deletable: false}
 ];
 
 /* create a NewList Function for adding new Lists */
