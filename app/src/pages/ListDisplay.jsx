@@ -11,14 +11,17 @@ function ListDisplay() {
     const [tasks, setTasks] = useState([]);
 
     return (
-        <>
-            <div className='w-4/5 max-h-screen overflow-y-auto overflow-x-hidden'>
+        <div>
+            <div
+                className='h-screen max-h-screen overflow-y-auto overflow-x-hidden'
+                style={{scrollbarGutter: "stable"}}
+            >
                 <TaskList tasks={tasks} setTasks={setTasks} />
             </div>
             <div className='absolute w-4/5 bottom-0 right-0 pb-3 backdrop-blur-sm'>
                 <AddTask tasks={tasks} setTasks={setTasks} />
             </div>
-        </>
+        </div>
     );
 }
 

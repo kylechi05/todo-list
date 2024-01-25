@@ -11,28 +11,27 @@ const lists = [
 
 function Sidenav() {
     const listList = lists.map(list =>
-        <Link to={list.link}>
-        <li key={list.listName} className={`flex my-2 h-10 rounded-md ${list.hover} cursor-pointer bg-orange-100`}>
-           
+        <li key={list.listName} >
+            <Link to={list.link} className={`flex my-2 h-10 rounded-md ${list.hover} cursor-pointer bg-orange-100`}>
                 <span className='m-auto text-center material-symbols-outlined basis-16'>{list.icon}</span>
                 <span className='m-auto grow'>{list.listName}</span>
-            
+            </Link>
         </li>
-        </Link>
     );
 
     return (
-        <>
-            <div className=' w-1/5 bg-orange-50'>
+        <div className='h-screen w-screen flex'>
+            <div className='w-1/5 min-w-64 bg-orange-50'>
                 <h1 className='flex text-xl h-24 m-3 rounded-lg bg-orange-200'>
                     <span className='m-auto text-center material-symbols-outlined basis-16'>menu</span>
                     <span className='m-auto grow'>Menu</span>
                 </h1>
                 <ul className='mx-3'>{listList}</ul>
             </div>
-
-            <Outlet />
-        </>
+            <div className='grow'>
+                <Outlet />
+            </div>
+        </div>
     );
 }
 
