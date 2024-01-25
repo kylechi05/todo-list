@@ -1,7 +1,16 @@
 import React, {useState} from 'react';
+import StarTask from './StarTask.jsx';
+import MyDayTask from './MyDayTask.jsx'
 
 function AddTask({ tasks, setTasks }){
     const [addButton, setAddButton] = useState('add');
+
+    const [starred, setStarred] = useState([false, {fontVariationSettings: "'FILL' 0"}]);
+    const [starHover, setStarHover] = useState('text-zinc-700');
+
+    const [myDay, setMyDay] = useState([false, {fontVariationSettings: "'FILL' 0"}]);
+    const [myDayHover, setMyDayHover] = useState('text-zinc-700');
+
     const [inputValue, setInputValue] = useState('');
     const [taskCount, setTaskCount] = useState(0);
 
@@ -24,14 +33,18 @@ function AddTask({ tasks, setTasks }){
                     {
                         id: taskCount,
                         content: inputValue,
-                        // important: starred,
-                        // myday: today,
+                        important: starred[0],
+                        myDay: myDay[0],
                     }
                 ]
             );
             setTaskCount(taskCount + 0.01);
             setInputValue('');
             setAddButton('add');
+            setStarred([false, {fontVariationSettings: "'FILL' 0"}])
+            setStarHover('text-zinc-700');
+            setMyDay([false, {fontVariationSettings: "'FILL' 0"}])
+            setMyDayHover('text-zinc-700');
         }
     }
 
@@ -53,6 +66,16 @@ function AddTask({ tasks, setTasks }){
                 onChange={(e) => handleChange(e.target.value)}
                 onKeyDown={checkEnter}
             />
+            <button
+                className='mx-2 material-symbols-outlined'
+            >
+                <StarTask starred={starred} setStarred={setStarred} hover={starHover} setHover={setStarHover} />
+            </button>
+            <button
+                className='material-symbols-outlined'
+            >
+                <MyDayTask myDay={myDay} setMyDay={setMyDay} hover={myDayHover} setHover={setMyDayHover} />
+            </button>
         </div>
     );
 }

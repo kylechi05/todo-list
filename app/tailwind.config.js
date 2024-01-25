@@ -9,7 +9,7 @@ export default {
       colors: {
         "green-pastel": "#C8E2BC",
         "salmon-pastel": "#FAA290",
-        "lavender-pastel": "#ABBEFE",
+        "lavender-pastel": "#B7AFFF",
       },
     },
   },

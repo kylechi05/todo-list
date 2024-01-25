@@ -9,7 +9,6 @@ function ListDisplay({ tab }){};
 
 function ListDisplay() {
     const [tasks, setTasks] = useState([]);
-    const [completed, setCompleted] = useState([]);
 
     return (
         <>

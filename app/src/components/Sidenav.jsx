@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const lists = [
-    {listName: 'My Day', icon: 'wb_sunny', hover: 'hover:bg-lavender-pastel', deletable: false},
+    {listName: 'My Day', icon: 'routine', hover: 'hover:bg-lavender-pastel', deletable: false},
     {listName: 'Important', icon: 'star', hover: 'hover:bg-salmon-pastel', deletable: false},
     {listName: 'Tasks', icon: 'home', hover: 'hover:bg-green-pastel', deletable: false}
 ];

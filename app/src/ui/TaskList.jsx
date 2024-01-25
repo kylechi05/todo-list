@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
+import StarTask from './StarTask.jsx';
+import MyDayTask from './MyDayTask.jsx';
+
+const HoverCheck = () => {
+    const [hover, setHover] = useState('circle');
+
+    const handleMouseEnter = () => {
+        setHover('check_circle');
+    };
+
+    const handleMouseLeave = () => {
+        setHover('circle');
+    };
+
+    return (
+        <span
+            className='material-symbols-outlined'
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            {hover}
+        </span>
+    );
+}
 
 function TaskList({ tasks, setTasks }) {
 
     const [completedTasks, setCompletedTasks] = useState([]);
     const [expanded, setExpanded] = useState(true);
 
-    const HoverIcon = () => {
-        const [hover, setHover] = useState('circle');
-
-        const handleMouseEnter = () => {
-            setHover('check_circle');
-        };
-
-        const handleMouseLeave = () => {
-            setHover('circle');
-        };
-
-        return (
-            <span
-                className='material-symbols-outlined'
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                {hover}
-            </span>
-        );
-    }
-    
     const pendingTaskList = tasks.map((task) =>
         <li key={task.id} className='flex p-3 my-1 rounded-md bg-orange-100 text-wrap break-words'>
             <button
@@ -41,16 +43,22 @@ function TaskList({ tasks, setTasks }) {
                     );
                 }}
             >
-                <HoverIcon />
+                <HoverCheck />
             </button>
-            <span>
+            <span className='w-full'>
                 {task.content}
             </span>
+            <button className='mx-1 material-symbols-outlined'>
+                star
+            </button>
+            <button className='material-symbols-outlined'>
+                routine
+            </button>
         </li>
     );
     
     const finishedTaskList = completedTasks.map((task) =>
-        <li key={task.id} className='flex p-3 my-1 rounded-md bg-orange-100 saturate-50 text-wrap'>
+        <li key={task.id} className='flex p-3 my-1 rounded-md bg-orange-100 saturate-50 text-wrap break-words'>
             <button
                 className='text-zinc-500 mr-2 cursor-pointer material-symbols-outlined'
                 onClick={() => {
@@ -65,7 +73,7 @@ function TaskList({ tasks, setTasks }) {
             >
                 check
             </button>
-            <span className='line-through'>
+            <span className='max-w-full line-through'>
                 {task.content}
             </span>
         </li>
@@ -77,7 +85,7 @@ function TaskList({ tasks, setTasks }) {
             {finishedTaskList.length > 0 ? (
                 <>
                     <button
-                        className='flex px-3 py-2 rounded-md bg-orange-100'
+                        className='flex px-3 my-2 rounded-md bg-orange-100'
                         onClick={() => {expanded === true ? setExpanded(false) : setExpanded(true)}}
                     >
                         <span className='m-auto material-symbols-outlined'>
