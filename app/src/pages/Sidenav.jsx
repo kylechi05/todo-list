@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const lists = [
-    {listName: 'My Day', icon: 'routine', hover: 'hover:bg-lavender-pastel', deletable: false},
-    {listName: 'Important', icon: 'star', hover: 'hover:bg-salmon-pastel', deletable: false},
-    {listName: 'Tasks', icon: 'home', hover: 'hover:bg-green-pastel', deletable: false}
+    {link: '/myday', listName: 'My Day', icon: 'routine', hover: 'hover:bg-lavender-pastel', deletable: false},
+    {link: '/important', listName: 'Important', icon: 'star', hover: 'hover:bg-salmon-pastel', deletable: false},
+    {link: '/tasklist', listName: 'Tasks', icon: 'home', hover: 'hover:bg-green-pastel', deletable: false}
 ];
 
 /* create a NewList Function for adding new Lists */
 
 function Sidenav() {
     const listList = lists.map(list =>
+        <Link to={list.link}>
         <li key={list.listName} className={`flex my-2 h-10 rounded-md ${list.hover} cursor-pointer bg-orange-100`}>
-            <span className='m-auto text-center material-symbols-outlined basis-16'>{list.icon}</span>
-            <span className='m-auto grow'>{list.listName}</span>
+           
+                <span className='m-auto text-center material-symbols-outlined basis-16'>{list.icon}</span>
+                <span className='m-auto grow'>{list.listName}</span>
+            
         </li>
+        </Link>
     );
 
     return (
-        <div className=' w-1/5 bg-orange-50'>
-            <h1 className='flex text-xl h-24 m-3 rounded-lg bg-orange-200'>
-                <span className='m-auto text-center material-symbols-outlined basis-16'>menu</span>
-                <span className='m-auto grow'>Menu</span>
-            </h1>
-            <ul className='mx-3'>{listList}</ul>
-        </div>
+        <>
+            <div className=' w-1/5 bg-orange-50'>
+                <h1 className='flex text-xl h-24 m-3 rounded-lg bg-orange-200'>
+                    <span className='m-auto text-center material-symbols-outlined basis-16'>menu</span>
+                    <span className='m-auto grow'>Menu</span>
+                </h1>
+                <ul className='mx-3'>{listList}</ul>
+            </div>
+
+            <Outlet />
+        </>
     );
 }
 
