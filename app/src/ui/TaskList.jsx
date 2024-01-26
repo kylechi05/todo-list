@@ -91,7 +91,7 @@ function TaskList({ tasks, setTasks }) {
                         <span className='m-auto material-symbols-outlined'>
                             {expanded === true ? ("expand_more") : ("navigate_next")}
                         </span>
-                        <span className='m-auto px-1'>Tasks Completed: {finishedTaskList.length}</span>
+                        <span className='m-auto p-1'>Tasks Completed: {finishedTaskList.length}</span>
                     </button>
                     <div>
                         {expanded === true && finishedTaskList}

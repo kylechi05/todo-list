@@ -11,7 +11,7 @@ function ListDisplay() {
     const [tasks, setTasks] = useState([]);
 
     return (
-        <div>
+        <div className='h-screen'>
             <div
                 className='h-screen max-h-screen overflow-y-auto overflow-x-hidden'
                 style={{scrollbarGutter: "stable"}}

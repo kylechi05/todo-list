@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate  } from 'react-router-dom';
 import Sidenav from './pages/Sidenav.jsx';
 import ListDisplay from './pages/ListDisplay.jsx';
 import Important from './pages/Important.jsx';
@@ -12,11 +12,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Sidenav />}>
-          <Route index path="tasklist" element={<ListDisplay />} />
+          <Route path="/" element={<Navigate to="/tasklist" />}></Route>
+          <Route path="tasklist" element={<ListDisplay />} />
           <Route path="important" element={<Important />} />
           <Route path="myday" element={<MyDay />} />
-          <Route path="*" element={<PageNotFound />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   ) 
