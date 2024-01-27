@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import StarTask from './StarTask.jsx';
-import MyDayTask from './MyDayTask.jsx';
+import StarTask from './AddStarTask.jsx';
+import MyDayTask from './AddMyDayTask.jsx';
 
 const HoverCheck = () => {
     const [hover, setHover] = useState('circle');
@@ -52,7 +52,9 @@ function TaskList({ pending, setPending, completed, setCompleted, flags }) {
             <span className='w-full'>
                 {task.content}
             </span>
-            <button className='mx-1 material-symbols-outlined'>
+            <button
+                className='mx-1 material-symbols-outlined'
+            >
                 star
             </button>
             <button className='material-symbols-outlined'>

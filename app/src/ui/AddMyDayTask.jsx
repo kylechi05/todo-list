@@ -1,10 +1,12 @@
+import React, { useState } from 'react';
+
 function MyDayTask({ myDay, setMyDay, hover, setHover, isMyDay }) {
 
     const handleMouseEnter = () => { setHover('text-lavender-pastel') };
     const handleMouseLeave = () => {
-        myDay[1].fontVariationSettings == "'FILL' 0"
-        ? setHover('text-zinc-700') 
-        : null
+        if (myDay[1].fontVariationSettings == "'FILL' 0") {
+            setHover('text-zinc-700')
+        }
     };
     const handleClick = () => {
         setMyDay(

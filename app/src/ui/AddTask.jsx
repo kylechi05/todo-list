@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import StarTask from './StarTask.jsx';
-import MyDayTask from './MyDayTask.jsx'
+import StarTask from './AddStarTask.jsx';
+import MyDayTask from './AddMyDayTask.jsx'
 
-function AddTask({ pending, setPending, isImportant, isMyDay }){
+function AddTask({ pending, setPending, isImportant, isMyDay }) {
     const [addButton, setAddButton] = useState('add');
 
-    const [starHover, setStarHover] = useState('text-zinc-700');
+    const [starHover, setStarHover] = useState('text-zinc-700')
     const [starred, setStarred] = useState(isImportant
         ? [true, {fontVariationSettings: "'FILL' 1"}]
         : [false, {fontVariationSettings: "'FILL' 0"}]);
-
-    const [myDayHover, setMyDayHover] = useState('text-zinc-700');
+    
+    const [myDayHover, setMyDayHover] = useState('text-zinc-700')
     const [myDay, setMyDay] = useState(isMyDay
         ? [true, {fontVariationSettings: "'FILL' 1"}]
         : [false, {fontVariationSettings: "'FILL' 0"}]);
@@ -78,18 +78,18 @@ function AddTask({ pending, setPending, isImportant, isMyDay }){
                 <StarTask
                     starred={starred}
                     setStarred={setStarred}
+                    isImportant={isImportant}
                     hover={starHover}
                     setHover={setStarHover}
-                    isImportant={isImportant}
                 />
             </button>
             <button className='material-symbols-outlined'>
                 <MyDayTask
                     myDay={myDay}
                     setMyDay={setMyDay}
+                    isMyDay={isMyDay}
                     hover={myDayHover}
                     setHover={setMyDayHover}
-                    isMyDay={isMyDay}
                 />
             </button>
         </div>

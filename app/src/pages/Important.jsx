@@ -1,33 +1,20 @@
 import React from 'react';
-import TaskList from '../ui/TaskList.jsx';
-import AddTask from '../ui/AddTask.jsx';
+import ListDisplay from '../ui/ListDisplay.jsx';
+
 
 function Important({ pending, setPending, completed, setCompleted }) {
 
     return (
-        <div className='h-screen'>
-            <div
-                className='h-screen max-h-screen overflow-y-auto overflow-x-hidden'
-                style={{scrollbarGutter: "stable"}}
-            >
-                <TaskList
-                    pending={pending} 
-                    setPending={setPending}
-                    completed={completed}
-                    setCompleted={setCompleted}
-                    flags={'important'}
-                />
-            </div>
-            <div className='absolute w-4/5 bottom-0 right-0 pb-3 backdrop-blur-sm'>
-                <AddTask
-                    pending={pending}
-                    setPending={setPending}
-                    isImportant={true} 
-                    isMyDay={false}
-                />
-            </div>
-        </div>
+        <ListDisplay
+            pending={pending}
+            setPending={setPending}
+            completed={completed}
+            setCompleted={setCompleted}
+            flags={'important'}
+            isImportant={true}
+            isMyDay={false}
+        />
     );
-};
+}
 
 export default Important;

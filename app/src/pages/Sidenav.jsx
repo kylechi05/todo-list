@@ -5,7 +5,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 const lists = [
     {href: '/myday', listName: 'My Day', icon: 'routine', bg: 'bg-lavender-pastel', hover: 'hover:bg-lavender-pastel', deletable: false},
     {href: '/important', listName: 'Important', icon: 'star', bg: 'bg-salmon-pastel' ,hover: 'hover:bg-salmon-pastel', deletable: false},
-    {href: '/tasklist', listName: 'Tasks', icon: 'home', bg: 'bg-green-pastel', hover: 'hover:bg-green-pastel', deletable: false}
+    {href: '/tasks', listName: 'Tasks', icon: 'home', bg: 'bg-green-pastel', hover: 'hover:bg-green-pastel', deletable: false}
 ];
 
 function Sidenav() {

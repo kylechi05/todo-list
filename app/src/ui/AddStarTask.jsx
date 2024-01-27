@@ -1,10 +1,12 @@
+import React, { useState } from 'react';
+
 function StarTask({ starred, setStarred, hover, setHover, isImportant }) {
 
     const handleMouseEnter = () => { setHover('text-salmon-pastel') };
     const handleMouseLeave = () => {
-        starred[1].fontVariationSettings == "'FILL' 0"
-        ? setHover('text-zinc-700') 
-        : null
+        if (starred[1].fontVariationSettings == "'FILL' 0") {
+            setHover('text-zinc-700')
+        }
     };
     const handleClick = () => {
         setStarred(
