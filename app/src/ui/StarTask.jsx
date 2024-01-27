@@ -1,4 +1,4 @@
-function StarTask({ starred, setStarred, hover, setHover }) {
+function StarTask({ starred, setStarred, hover, setHover, isImportant }) {
 
     const handleMouseEnter = () => { setHover('text-salmon-pastel') };
     const handleMouseLeave = () => {
@@ -7,19 +7,22 @@ function StarTask({ starred, setStarred, hover, setHover }) {
         : null
     };
     const handleClick = () => {
-        setStarred([true,
-            starred[1].fontVariationSettings == "'FILL' 0"
-            ? {fontVariationSettings: "'FILL' 1"}
-            : {fontVariationSettings: "'FILL' 0"}
-        ])
+        setStarred(
+            [
+                true,
+                starred[1].fontVariationSettings == "'FILL' 0"
+                ? {fontVariationSettings: "'FILL' 1"}
+                : {fontVariationSettings: "'FILL' 0"}
+            ]
+        )
     };
 
     return (
         <span
-            className={`${hover} material-symbols-outlined`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
+            className={`${isImportant ? 'text-salmon-pastel' : hover} material-symbols-outlined`}
+            onMouseEnter={isImportant ? null : handleMouseEnter}
+            onMouseLeave={isImportant ? null : handleMouseLeave}
+            onClick={isImportant ? null : handleClick}
             style={starred[1]}
         >
             star

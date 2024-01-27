@@ -1,4 +1,4 @@
-function MyDayTask({ myDay, setMyDay, hover, setHover }) {
+function MyDayTask({ myDay, setMyDay, hover, setHover, isMyDay }) {
 
     const handleMouseEnter = () => { setHover('text-lavender-pastel') };
     const handleMouseLeave = () => {
@@ -7,19 +7,22 @@ function MyDayTask({ myDay, setMyDay, hover, setHover }) {
         : null
     };
     const handleClick = () => {
-        setMyDay([true,
-            myDay[1].fontVariationSettings == "'FILL' 0"
-            ? {fontVariationSettings: "'FILL' 1"}
-            : {fontVariationSettings: "'FILL' 0"}
-        ])  
+        setMyDay(
+            [
+                true,
+                myDay[1].fontVariationSettings == "'FILL' 0"
+                ? {fontVariationSettings: "'FILL' 1"}
+                : {fontVariationSettings: "'FILL' 0"}
+            ]
+        ) 
     };
     
     return (
         <span
-            className={`${hover} material-symbols-outlined`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
+            className={`${isMyDay ? 'text-lavender-pastel' : hover} material-symbols-outlined`}
+            onMouseEnter={isMyDay ? null : handleMouseEnter}
+            onMouseLeave={isMyDay ? null : handleMouseLeave}
+            onClick={isMyDay ? null : handleClick}
             style={myDay[1]}
         >
             routine

@@ -24,21 +24,25 @@ const HoverCheck = () => {
     );
 }
 
-function TaskList({ tasks, setTasks }) {
+function TaskList({ pending, setPending, completed, setCompleted, flags }) {
 
-    const [completedTasks, setCompletedTasks] = useState([]);
     const [expanded, setExpanded] = useState(true);
 
-    const pendingTaskList = tasks.map((task) =>
-        <li key={task.id} className='flex p-3 my-1 rounded-md bg-orange-100 text-wrap break-words'>
+    const pendingTaskList = pending.map((task) =>
+        <li
+            key={task.id}
+            className='flex p-3 my-1 rounded-md bg-orange-100 text-wrap break-words'
+            important={task.important.toString()}
+            myday={task.myDay.toString()}
+        >
             <button
                 className='text-zinc-600 mr-2 cursor-pointer material-symbols-outlined'
                 onClick={() => {
-                    setTasks(tasks.filter(a => a.id !== task.id));
-                    setCompletedTasks(
+                    setPending(pending.filter(a => a.id !== task.id));
+                    setCompleted(
                         [
                             task,
-                            ...completedTasks
+                            ...completed
                         ]
                     );
                 }}
@@ -56,17 +60,25 @@ function TaskList({ tasks, setTasks }) {
             </button>
         </li>
     );
+                
+    const pendingTaskListImportant = pendingTaskList.filter(task => task.props.important === 'true');
+    const pendingTaskListMyDay = pendingTaskList.filter(task => task.props.myday === 'true');
     
-    const finishedTaskList = completedTasks.map((task) =>
-        <li key={task.id} className='flex p-3 my-1 rounded-md bg-orange-100 saturate-50 text-wrap break-words'>
+    const completedTaskList = completed.map((task) =>
+        <li
+            key={task.id}
+            className='flex p-3 my-1 rounded-md bg-orange-100 saturate-50 text-wrap break-words'
+            important={task.important.toString()}
+            myday={task.myDay.toString()}
+        >
             <button
                 className='text-zinc-500 mr-2 cursor-pointer material-symbols-outlined'
                 onClick={() => {
-                    setCompletedTasks(completedTasks.filter(a => a.id !== task.id));
-                    setTasks(
+                    setCompleted(completed.filter(a => a.id !== task.id));
+                    setPending(
                         [
-                            ...tasks,
-                            task
+                            task,
+                            ...pending
                         ]
                     );
                 }}
@@ -79,10 +91,24 @@ function TaskList({ tasks, setTasks }) {
         </li>
     );
 
+    const completedTaskListImportant = completedTaskList.filter(task => task.props.important === 'true');
+    const completedTaskListMyDay = completedTaskList.filter(task => task.props.myday === 'true');
+
+    let returnPending = pendingTaskList;
+    let returnCompleted = completedTaskList;
+
+    if (flags === 'important') {
+        returnPending = pendingTaskListImportant;
+        returnCompleted = completedTaskListImportant;
+    } else if (flags === 'myday') {
+        returnPending = pendingTaskListMyDay;
+        returnCompleted = completedTaskListMyDay;
+    }
+    
     return (
         <ul className='m-10'>
-            {pendingTaskList}
-            {finishedTaskList.length > 0 ? (
+            {returnPending}
+            {returnCompleted.length > 0 ? (
                 <div>
                     <button
                         className='flex px-3 my-2 rounded-md bg-orange-100'
@@ -91,10 +117,10 @@ function TaskList({ tasks, setTasks }) {
                         <span className='m-auto material-symbols-outlined'>
                             {expanded === true ? ("expand_more") : ("navigate_next")}
                         </span>
-                        <span className='m-auto p-1'>Tasks Completed: {finishedTaskList.length}</span>
+                        <span className='m-auto p-1'>Tasks Completed: {returnCompleted.length}</span>
                     </button>
                     <div>
-                        {expanded === true && finishedTaskList}
+                        {expanded === true && returnCompleted}
                     </div>
                 </div>
             ) : (

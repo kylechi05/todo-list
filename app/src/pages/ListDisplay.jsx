@@ -7,8 +7,7 @@ filer the listDisplay based on sideNav button, pass tab as a prop
 function ListDisplay({ tab }){};
 */
 
-function ListDisplay() {
-    const [tasks, setTasks] = useState([]);
+function ListDisplay({ pending, setPending, completed, setCompleted }) {
 
     return (
         <div className='h-screen'>
@@ -16,10 +15,10 @@ function ListDisplay() {
                 className='h-screen max-h-screen overflow-y-auto overflow-x-hidden'
                 style={{scrollbarGutter: "stable"}}
             >
-                <TaskList tasks={tasks} setTasks={setTasks} />
+                <TaskList pending={pending} setPending={setPending} completed={completed} setCompleted={setCompleted} flags={null} />
             </div>
             <div className='absolute w-4/5 bottom-0 right-0 pb-3 backdrop-blur-sm'>
-                <AddTask tasks={tasks} setTasks={setTasks} />
+                <AddTask pending={pending} setPending={setPending} isImportant={false} isMyDay={false} />
             </div>
         </div>
     );

@@ -2,17 +2,20 @@ import React, {useState} from 'react';
 import StarTask from './StarTask.jsx';
 import MyDayTask from './MyDayTask.jsx'
 
-function AddTask({ tasks, setTasks }){
+function AddTask({ pending, setPending, isImportant, isMyDay }){
     const [addButton, setAddButton] = useState('add');
 
-    const [starred, setStarred] = useState([false, {fontVariationSettings: "'FILL' 0"}]);
     const [starHover, setStarHover] = useState('text-zinc-700');
+    const [starred, setStarred] = useState(isImportant
+        ? [true, {fontVariationSettings: "'FILL' 1"}]
+        : [false, {fontVariationSettings: "'FILL' 0"}]);
 
-    const [myDay, setMyDay] = useState([false, {fontVariationSettings: "'FILL' 0"}]);
     const [myDayHover, setMyDayHover] = useState('text-zinc-700');
+    const [myDay, setMyDay] = useState(isMyDay
+        ? [true, {fontVariationSettings: "'FILL' 1"}]
+        : [false, {fontVariationSettings: "'FILL' 0"}]);
 
     const [inputValue, setInputValue] = useState('');
-    const [taskCount, setTaskCount] = useState(0);
 
     const checkEnter = (event) => {
         if (event.key === "Enter") {
@@ -25,26 +28,30 @@ function AddTask({ tasks, setTasks }){
         setInputValue(input);
     }
 
+    function getDate() {
+        const now = new Date();
+        const milliseconds = now.getMilliseconds();
+        return now.toString() + " " + milliseconds;
+    }
+
     function handleSubmit() {
         if (inputValue != '') {
-            setTasks(
+            setPending(
                 [
-                    ...tasks,
                     {
-                        id: taskCount,
+                        id: getDate(),
                         content: inputValue,
-                        completed: false,
                         important: starred[0],
                         myDay: myDay[0],
-                    }
+                    },
+                    ...pending
                 ]
             );
-            setTaskCount(taskCount + 0.01);
             setInputValue('');
             setAddButton('add');
-            setStarred([false, {fontVariationSettings: "'FILL' 0"}])
+            if (!isImportant) setStarred([false, {fontVariationSettings: "'FILL' 0"}]);
+            if (!isMyDay) setMyDay([false, {fontVariationSettings: "'FILL' 0"}]);
             setStarHover('text-zinc-700');
-            setMyDay([false, {fontVariationSettings: "'FILL' 0"}])
             setMyDayHover('text-zinc-700');
         }
     }
@@ -67,15 +74,23 @@ function AddTask({ tasks, setTasks }){
                 onChange={(e) => handleChange(e.target.value)}
                 onKeyDown={checkEnter}
             />
-            <button
-                className='mx-2 material-symbols-outlined'
-            >
-                <StarTask starred={starred} setStarred={setStarred} hover={starHover} setHover={setStarHover} />
+            <button className='mx-2 material-symbols-outlined'>
+                <StarTask
+                    starred={starred}
+                    setStarred={setStarred}
+                    hover={starHover}
+                    setHover={setStarHover}
+                    isImportant={isImportant}
+                />
             </button>
-            <button
-                className='material-symbols-outlined'
-            >
-                <MyDayTask myDay={myDay} setMyDay={setMyDay} hover={myDayHover} setHover={setMyDayHover} />
+            <button className='material-symbols-outlined'>
+                <MyDayTask
+                    myDay={myDay}
+                    setMyDay={setMyDay}
+                    hover={myDayHover}
+                    setHover={setMyDayHover}
+                    isMyDay={isMyDay}
+                />
             </button>
         </div>
     );

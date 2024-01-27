@@ -1,8 +1,32 @@
-function Important() {
+import React from 'react';
+import TaskList from '../ui/TaskList.jsx';
+import AddTask from '../ui/AddTask.jsx';
+
+function Important({ pending, setPending, completed, setCompleted }) {
+
     return (
-        <>
-            <div>Important Tasks Page</div>
-        </>
+        <div className='h-screen'>
+            <div
+                className='h-screen max-h-screen overflow-y-auto overflow-x-hidden'
+                style={{scrollbarGutter: "stable"}}
+            >
+                <TaskList
+                    pending={pending} 
+                    setPending={setPending}
+                    completed={completed}
+                    setCompleted={setCompleted}
+                    flags={'important'}
+                />
+            </div>
+            <div className='absolute w-4/5 bottom-0 right-0 pb-3 backdrop-blur-sm'>
+                <AddTask
+                    pending={pending}
+                    setPending={setPending}
+                    isImportant={true} 
+                    isMyDay={false}
+                />
+            </div>
+        </div>
     );
 };
 
