@@ -8,8 +8,6 @@ const lists = [
     {href: '/tasklist', listName: 'Tasks', icon: 'home', bg: 'bg-green-pastel', hover: 'hover:bg-green-pastel', deletable: false}
 ];
 
-/* create a NewList Function for adding new Lists */
-
 function Sidenav() {
 
     let location = useLocation();
