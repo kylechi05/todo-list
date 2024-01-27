@@ -83,7 +83,7 @@ function TaskList({ tasks, setTasks }) {
         <ul className='m-10'>
             {pendingTaskList}
             {finishedTaskList.length > 0 ? (
-                <li>
+                <div>
                     <button
                         className='flex px-3 my-2 rounded-md bg-orange-100'
                         onClick={() => {expanded === true ? setExpanded(false) : setExpanded(true)}}
@@ -96,7 +96,7 @@ function TaskList({ tasks, setTasks }) {
                     <div>
                         {expanded === true && finishedTaskList}
                     </div>
-                </li>
+                </div>
             ) : (
                 null
             )}

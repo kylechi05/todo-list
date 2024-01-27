@@ -33,6 +33,7 @@ function AddTask({ tasks, setTasks }){
                     {
                         id: taskCount,
                         content: inputValue,
+                        completed: false,
                         important: starred[0],
                         myDay: myDay[0],
                     }
