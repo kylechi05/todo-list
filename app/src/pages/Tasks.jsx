@@ -10,8 +10,6 @@ function Tasks({ pending, setPending, completed, setCompleted }) {
             completed={completed}
             setCompleted={setCompleted}
             flags={null}
-            isimportant={false}
-            isMyDay={false}
         />
     );
 }

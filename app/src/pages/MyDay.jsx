@@ -10,8 +10,6 @@ function MyDay({ pending, setPending, completed, setCompleted }) {
             completed={completed}
             setCompleted={setCompleted}
             flags={'myday'}
-            isImportant={false}
-            isMyDay={true}
         />
     );
 }

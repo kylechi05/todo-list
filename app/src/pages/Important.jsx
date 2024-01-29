@@ -11,8 +11,6 @@ function Important({ pending, setPending, completed, setCompleted }) {
             completed={completed}
             setCompleted={setCompleted}
             flags={'important'}
-            isImportant={true}
-            isMyDay={false}
         />
     );
 }

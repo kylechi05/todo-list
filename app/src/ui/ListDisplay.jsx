@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import TaskList from '../ui/TaskList.jsx';
 import AddTask from '../ui/AddTask.jsx';
 
-function ListDisplay({ pending, setPending, completed, setCompleted, flags, isImportant, isMyDay }) {
+function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
 
+    const isImportant = (flags === 'important') ? true : false;
+    const isMyDay = (flags === 'myday') ? true : false;
     
     return (
         <div className='h-screen'>
@@ -16,14 +18,15 @@ function ListDisplay({ pending, setPending, completed, setCompleted, flags, isIm
                     setPending={setPending}
                     completed={completed}
                     setCompleted={setCompleted}
-                    flags={flags}
+                    isImportant={isImportant}
+                    isMyDay={isMyDay}
                 />
             </div>
             <div className='absolute w-4/5 bottom-0 right-0 pb-3 backdrop-blur-sm'>
                 <AddTask
                     pending={pending}
                     setPending={setPending}
-                    isImportant={isImportant} 
+                    isImportant={isImportant}
                     isMyDay={isMyDay}
                 />
             </div>

@@ -1,8 +1,71 @@
 import React, {useState} from 'react';
-import StarTask from './AddStarTask.jsx';
-import MyDayTask from './AddMyDayTask.jsx'
+
+function AddStarTask({ starred, setStarred, hover, setHover, isImportant }) {
+
+    const handleMouseEnter = () => { setHover('text-salmon-pastel') };
+    const handleMouseLeave = () => {
+        if (starred[1].fontVariationSettings == "'FILL' 0") {
+            setHover('text-zinc-700')
+        }
+    };
+    const handleClick = () => {
+        setStarred(
+            [
+                true,
+                starred[1].fontVariationSettings == "'FILL' 0"
+                ? {fontVariationSettings: "'FILL' 1"}
+                : {fontVariationSettings: "'FILL' 0"}
+            ]
+        )
+    };
+
+    return (
+        <span
+            className={`${isImportant ? 'text-salmon-pastel' : hover} material-symbols-outlined`}
+            onMouseEnter={isImportant ? null : handleMouseEnter}
+            onMouseLeave={isImportant ? null : handleMouseLeave}
+            onClick={isImportant ? null : handleClick}
+            style={starred[1]}
+        >
+            star
+        </span>
+    );
+};
+
+function AddMyDayTask({ myDay, setMyDay, hover, setHover, isMyDay }) {
+
+    const handleMouseEnter = () => { setHover('text-lavender-pastel') };
+    const handleMouseLeave = () => {
+        if (myDay[1].fontVariationSettings == "'FILL' 0") {
+            setHover('text-zinc-700')
+        }
+    };
+    const handleClick = () => {
+        setMyDay(
+            [
+                true,
+                myDay[1].fontVariationSettings == "'FILL' 0"
+                ? {fontVariationSettings: "'FILL' 1"}
+                : {fontVariationSettings: "'FILL' 0"}
+            ]
+        ) 
+    };
+    
+    return (
+        <span
+            className={`${isMyDay ? 'text-lavender-pastel' : hover} material-symbols-outlined`}
+            onMouseEnter={isMyDay ? null : handleMouseEnter}
+            onMouseLeave={isMyDay ? null : handleMouseLeave}
+            onClick={isMyDay ? null : handleClick}
+            style={myDay[1]}
+        >
+            routine
+        </span>
+    );
+};
 
 function AddTask({ pending, setPending, isImportant, isMyDay }) {
+
     const [addButton, setAddButton] = useState('add');
 
     const [starHover, setStarHover] = useState('text-zinc-700')
@@ -75,7 +138,7 @@ function AddTask({ pending, setPending, isImportant, isMyDay }) {
                 onKeyDown={checkEnter}
             />
             <button className='mx-2 material-symbols-outlined'>
-                <StarTask
+                <AddStarTask
                     starred={starred}
                     setStarred={setStarred}
                     isImportant={isImportant}
@@ -84,7 +147,7 @@ function AddTask({ pending, setPending, isImportant, isMyDay }) {
                 />
             </button>
             <button className='material-symbols-outlined'>
-                <MyDayTask
+                <AddMyDayTask
                     myDay={myDay}
                     setMyDay={setMyDay}
                     isMyDay={isMyDay}

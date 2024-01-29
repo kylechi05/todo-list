@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import StarTask from './AddStarTask.jsx';
-import MyDayTask from './AddMyDayTask.jsx';
+import Task from './Task.jsx'
 
 const HoverCheck = () => {
     const [hover, setHover] = useState('circle');
@@ -24,7 +23,7 @@ const HoverCheck = () => {
     );
 }
 
-function TaskList({ pending, setPending, completed, setCompleted, flags }) {
+function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay }) {
 
     const [expanded, setExpanded] = useState(true);
 
@@ -35,31 +34,13 @@ function TaskList({ pending, setPending, completed, setCompleted, flags }) {
             important={task.important.toString()}
             myday={task.myDay.toString()}
         >
-            <button
-                className='text-zinc-600 mr-2 cursor-pointer material-symbols-outlined'
-                onClick={() => {
-                    setPending(pending.filter(a => a.id !== task.id));
-                    setCompleted(
-                        [
-                            task,
-                            ...completed
-                        ]
-                    );
-                }}
-            >
-                <HoverCheck />
-            </button>
-            <span className='w-full'>
-                {task.content}
-            </span>
-            <button
-                className='mx-1 material-symbols-outlined'
-            >
-                star
-            </button>
-            <button className='material-symbols-outlined'>
-                routine
-            </button>
+            <Task
+                task={task}
+                pending={pending}
+                setPending={setPending}
+                completed={completed}
+                setCompleted={setCompleted}
+            />
         </li>
     );
                 
@@ -99,10 +80,10 @@ function TaskList({ pending, setPending, completed, setCompleted, flags }) {
     let returnPending = pendingTaskList;
     let returnCompleted = completedTaskList;
 
-    if (flags === 'important') {
+    if (isImportant) {
         returnPending = pendingTaskListImportant;
         returnCompleted = completedTaskListImportant;
-    } else if (flags === 'myday') {
+    } else if (isMyDay) {
         returnPending = pendingTaskListMyDay;
         returnCompleted = completedTaskListMyDay;
     }

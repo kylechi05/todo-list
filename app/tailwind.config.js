@@ -10,6 +10,7 @@ export default {
         "green-pastel": "#C8E2BC",
         "salmon-pastel": "#FAA290",
         "lavender-pastel": "#B7AFFF",
+        "red-pastel": "#FF6961",
       },
     },
   },
