@@ -86,7 +86,7 @@ function Delete({ clicked }) {
     )
 }
 
-function Task({ task, pending, setPending, completed, setCompleted }) {
+function Task({ task, pending, setPending, completed, setCompleted, expand, setExpand }) {
 
     const handleCheckClick = () => {
         setPending(pending.filter(obj => obj.id !== task.id));
@@ -128,16 +128,29 @@ function Task({ task, pending, setPending, completed, setCompleted }) {
         setPending(pending.filter(obj => obj.id !== task.id))
     }
 
+    const handleTaskClick = () => {
+        setExpand(
+            {
+                show: true,
+                task: task,
+            }
+        );
+        console.log(task.content)
+    }
+
     return (
-        <>
+        <div
+            className='w-full flex'
+            onClick={handleTaskClick}
+        >
             <HoverCheck clicked={handleCheckClick} />
-            <span className='w-full'>
+            <span className='w-full text-wrap break-words'>
                 {task.content}
             </span>
             <Star starred={task.important} clicked={handleStarClick} />
             <Routine routined={task.myDay} clicked={handleRoutineClick} />
             <Delete clicked={handleDeleteClick} />
-        </>
+        </div>
     );
 }
 

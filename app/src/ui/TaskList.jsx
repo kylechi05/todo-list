@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task.jsx'
 
-const HoverCheck = () => {
-    const [hover, setHover] = useState('circle');
+function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay, expand, setExpand }) {
 
-    const handleMouseEnter = () => {
-        setHover('check_circle');
-    };
+    useEffect(() => {
+        localStorage.setItem('PendingTaskList', JSON.stringify(pending));
+    }, [pending])
 
-    const handleMouseLeave = () => {
-        setHover('circle');
-    };
-
-    return (
-        <span
-            className='material-symbols-outlined'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            {hover}
-        </span>
-    );
-}
-
-function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay }) {
+    useEffect(() => {
+        localStorage.setItem('CompletedTaskList', JSON.stringify(completed))
+    }, [completed])
 
     const [expanded, setExpanded] = useState(true);
 
@@ -40,6 +26,8 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
                 setPending={setPending}
                 completed={completed}
                 setCompleted={setCompleted}
+                expand={expand}
+                setExpand={setExpand}
             />
         </li>
     );
@@ -89,27 +77,34 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
     }
     
     return (
-        <ul className='m-10'>
-            {returnPending}
-            {returnCompleted.length > 0 ? (
+        <>
+            {returnPending.length == 0 && returnCompleted.length == 0 &&
                 <div>
-                    <button
-                        className='flex px-3 my-2 rounded-md bg-orange-100'
-                        onClick={() => {expanded === true ? setExpanded(false) : setExpanded(true)}}
-                    >
-                        <span className='m-auto material-symbols-outlined'>
-                            {expanded === true ? ("expand_more") : ("navigate_next")}
-                        </span>
-                        <span className='m-auto p-1'>Tasks Completed: {returnCompleted.length}</span>
-                    </button>
-                    <div>
-                        {expanded === true && returnCompleted}
-                    </div>
+                    You have no tasks here, add them below!
                 </div>
-            ) : (
-                null
-            )}
-        </ul>
+            }
+            <ul className='m-10'>
+                {returnPending}
+                {returnCompleted.length > 0 ? (
+                    <div>
+                        <button
+                            className='flex px-3 my-2 rounded-md bg-orange-100'
+                            onClick={() => {expanded === true ? setExpanded(false) : setExpanded(true)}}
+                        >
+                            <span className='m-auto material-symbols-outlined'>
+                                {expanded === true ? ("expand_more") : ("navigate_next")}
+                            </span>
+                            <span className='m-auto p-1'>Tasks Completed: {returnCompleted.length}</span>
+                        </button>
+                        <div>
+                            {expanded === true && returnCompleted}
+                        </div>
+                    </div>
+                ) : (
+                    null
+                )}
+            </ul>
+        </>
     );
 }
 

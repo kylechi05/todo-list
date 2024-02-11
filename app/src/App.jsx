@@ -8,9 +8,9 @@ import MyDay from './pages/MyDay.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 
 function App() {
-
-  const [pending, setPending] = useState([]);
-  const [completed, setCompleted] = useState([]);
+ 
+  const [pending, setPending] = useState(JSON.parse(localStorage.getItem('PendingTaskList')) || []);
+  const [completed, setCompleted] = useState(JSON.parse(localStorage.getItem('CompletedTaskList')) || []);
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
-  ) 
+  );
 }
 
 export default App;

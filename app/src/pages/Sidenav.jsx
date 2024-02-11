@@ -26,17 +26,18 @@ function Sidenav() {
     );
 
     return (
-        <div className='h-screen w-screen flex'>
-            <div className='w-1/5 bg-orange-50'>
+        <div className='h-screen w-screen flex flex-row'>
+            <div className='basis-1/5 bg-orange-50'>
                 <h1 className='flex text-xl h-24 m-3 rounded-lg bg-orange-200'>
                     <span className='m-auto text-center material-symbols-outlined basis-16'>menu</span>
                     <span className='m-auto grow'>Menu</span>
                 </h1>
                 <ul className='mx-3'>{listList}</ul>
+                <div className='bg-orange-500' onClick={() => {localStorage.clear()}}>
+                    reset storage
+                </div>
             </div>
-            <div className='grow'>
-                <Outlet />
-            </div>
+            <Outlet />
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ListDisplay from '../ui/ListDisplay';
 
 function Tasks({ pending, setPending, completed, setCompleted }) {

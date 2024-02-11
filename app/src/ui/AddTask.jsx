@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function AddStarTask({ starred, setStarred, hover, setHover, isImportant }) {
 
