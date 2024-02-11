@@ -5,7 +5,7 @@ import ExpandedWindow from './ExpandedWindow.jsx';
 
 function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
 
-    const [expand, setExpand] = useState(
+    const [expandedWindow, setExpandedWindow] = useState(
         {
             show: false,
             task: {
@@ -33,8 +33,7 @@ function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
                         setCompleted={setCompleted}
                         isImportant={isImportant}
                         isMyDay={isMyDay}
-                        expand={expand}
-                        setExpand={setExpand}
+                        setExpandedWindow={setExpandedWindow}
                     />
                 </div>
                 <div className='absolute w-full bottom-0 pb-3 backdrop-blur-sm'>
@@ -46,10 +45,10 @@ function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
                     />
                 </div>
             </div>            
-            {expand.show &&
+            {expandedWindow.show &&
                 <ExpandedWindow
-                    expand={expand}
-                    setExpand={setExpand}
+                    expandedWindow={expandedWindow}
+                    setExpandedWindow={setExpandedWindow}
                     pending={pending}
                     setPending={setPending}
                 />

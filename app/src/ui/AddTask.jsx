@@ -83,7 +83,7 @@ function AddTask({ pending, setPending, isImportant, isMyDay }) {
     const checkEnter = (event) => {
         if (event.key === "Enter") {
             handleSubmit()
-        }   
+        }
     };
 
     function handleChange(input) {

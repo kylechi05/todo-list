@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Task from './Task.jsx'
 
-function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay, expand, setExpand }) {
+function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay, setExpandedWindow }) {
 
     useEffect(() => {
         localStorage.setItem('PendingTaskList', JSON.stringify(pending));
@@ -26,8 +26,7 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
                 setPending={setPending}
                 completed={completed}
                 setCompleted={setCompleted}
-                expand={expand}
-                setExpand={setExpand}
+                setExpandedWindow={setExpandedWindow}
             />
         </li>
     );
@@ -67,22 +66,26 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
 
     let returnPending = pendingTaskList;
     let returnCompleted = completedTaskList;
+    let headerMessage = "Tasks";
 
     if (isImportant) {
         returnPending = pendingTaskListImportant;
         returnCompleted = completedTaskListImportant;
+        headerMessage = "Important";
     } else if (isMyDay) {
         returnPending = pendingTaskListMyDay;
         returnCompleted = completedTaskListMyDay;
+        headerMessage = "My Day";
     }
-    
+
     return (
-        <>
-            {returnPending.length == 0 && returnCompleted.length == 0 &&
-                <div>
-                    You have no tasks here, add them below!
-                </div>
-            }
+        <div>
+            <div className='w-full  px-5 backdrop-blur-sm absolute'>
+                {returnPending.length == 0 && returnCompleted.length == 0
+                    ?   "You have no tasks here, add them below!"
+                    :   headerMessage
+                }
+            </div>  
             <ul className='m-10'>
                 {returnPending}
                 {returnCompleted.length > 0 ? (
@@ -104,7 +107,7 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
                     null
                 )}
             </ul>
-        </>
+        </div>
     );
 }
 

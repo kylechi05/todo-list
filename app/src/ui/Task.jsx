@@ -86,7 +86,7 @@ function Delete({ clicked }) {
     )
 }
 
-function Task({ task, pending, setPending, completed, setCompleted, expand, setExpand }) {
+function Task({ task, pending, setPending, completed, setCompleted, setExpandedWindow }) {
 
     const handleCheckClick = () => {
         setPending(pending.filter(obj => obj.id !== task.id));
@@ -129,13 +129,12 @@ function Task({ task, pending, setPending, completed, setCompleted, expand, setE
     }
 
     const handleTaskClick = () => {
-        setExpand(
+        setExpandedWindow(
             {
                 show: true,
                 task: task,
             }
         );
-        console.log(task.content)
     }
 
     return (
