@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Task from './Task.jsx'
 
 function TaskList({ pending, setPending, completed, setCompleted, isImportant, isMyDay, setExpandedWindow }) {
-
-    useEffect(() => {
-        localStorage.setItem('PendingTaskList', JSON.stringify(pending));
-    }, [pending])
-
-    useEffect(() => {
-        localStorage.setItem('CompletedTaskList', JSON.stringify(completed))
-    }, [completed])
 
     const [expanded, setExpanded] = useState(true);
 
@@ -94,7 +86,7 @@ function TaskList({ pending, setPending, completed, setCompleted, isImportant, i
                     {header.message}
                 </div>
                 {returnPending.length == 0 && returnCompleted.length == 0
-                    ? <p className='p-5'>"You have no tasks here, add them below!"</p>
+                    ? <p className='p-5'>You have no tasks here, add them below!</p>
                     : null
                 }
             </div>

@@ -8,9 +8,14 @@ const lists = [
     {href: '/tasks', listName: 'Tasks', icon: 'home', bg: 'bg-green-pastel', hover: 'hover:bg-green-pastel', deletable: false}
 ];
 
-function Sidenav() {
+function Sidenav({ setPending }) {
 
     let location = useLocation();
+
+    function resetStorage() {
+        localStorage.clear();
+        setPending([]);
+    }
 
     const listList = lists.map(list =>
         <li key={list.listName} >
@@ -27,14 +32,17 @@ function Sidenav() {
 
     return (
         <div className='h-screen w-screen flex flex-row'>
-            <div className='basis-1/5 bg-orange-50'>
+            <div className='relative basis-1/5 bg-orange-50 '>
                 <h1 className='flex text-xl h-24 m-3 rounded-lg bg-orange-200'>
                     <span className='m-auto text-center material-symbols-outlined basis-16'>menu</span>
                     <span className='m-auto grow'>Menu</span>
                 </h1>
                 <ul className='mx-3'>{listList}</ul>
-                <div className='bg-orange-500' onClick={() => {localStorage.clear()}}>
-                    reset storage
+                <div
+                    className='absolute bottom-5 right-1/4 w-1/2 p-1 text-center rounded-md cursor-pointer bg-red-pastel'
+                    onClick={resetStorage}
+                >
+                    Reset Tasks
                 </div>
             </div>
             <Outlet />
