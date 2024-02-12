@@ -22,21 +22,16 @@ function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
     return (
         <div className='flex flex-row basis-4/5'>
             <div className='grow relative'>
-                <div
-                    className='h-screen overflow-y-auto'
-                    style={{scrollbarGutter: "stable"}}
-                >
-                    <TaskList
-                        pending={pending} 
-                        setPending={setPending}
-                        completed={completed}
-                        setCompleted={setCompleted}
-                        isImportant={isImportant}
-                        isMyDay={isMyDay}
-                        setExpandedWindow={setExpandedWindow}
-                    />
-                </div>
-                <div className='absolute w-full bottom-0 pb-3 backdrop-blur-sm'>
+                <TaskList
+                    pending={pending} 
+                    setPending={setPending}
+                    completed={completed}
+                    setCompleted={setCompleted}
+                    isImportant={isImportant}
+                    isMyDay={isMyDay}
+                    setExpandedWindow={setExpandedWindow}
+                />
+                <div className='absolute w-full bottom-0 pb-3 backdrop-blur-md'>
                     <AddTask
                         pending={pending}
                         setPending={setPending}
