@@ -39,7 +39,7 @@ function ExpandedWindow({ expandedWindow, setExpandedWindow, pending, setPending
     }
 
     return (
-        <div className='w-1/4 h-screen bg-orange-50'>
+        <div className='w-1/3 h-screen bg-orange-50'>
             <div className='flex p-2'>
                 <span 
                     className='hover:bg-orange-100 rounded-md m-auto material-symbols-outlined'
@@ -59,6 +59,7 @@ function ExpandedWindow({ expandedWindow, setExpandedWindow, pending, setPending
                     onChange={(e) => handleChange(e.target.value)}
                 />
             </div>
+            
         </div>
     );
 }
