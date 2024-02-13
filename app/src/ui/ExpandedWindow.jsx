@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { HoverCheck, Star, Routine, Delete } from './Modifiers';
 
 const useTextAreaAutoHeight = (ref) => {
     useEffect(() => {
@@ -9,7 +10,7 @@ const useTextAreaAutoHeight = (ref) => {
     }, [ref]);
 };
 
-function ExpandedWindow({ expandedWindow, setExpandedWindow, pending, setPending }) {
+function ExpandedWindow({ expandedWindow, setExpandedWindow, pending, setPending, completed, setCompleted }) {
 
     const ref = useRef();
     useTextAreaAutoHeight(ref);
@@ -59,6 +60,32 @@ function ExpandedWindow({ expandedWindow, setExpandedWindow, pending, setPending
                     onChange={(e) => handleChange(e.target.value)}
                 />
             </div>
+            {/*
+            <HoverCheck
+                task={expandedWindow.task}
+                pending={pending}
+                setPending={setPending}
+                completed={completed}
+                setCompleted={setCompleted}
+            />
+            <Star
+                starred={expandedWindow.task.important} 
+                task={expandedWindow.task}
+                pending={pending}
+                setPending={setPending}
+            />
+            <Routine
+                routined={expandedWindow.task.myDay}
+                task={expandedWindow.task}
+                pending={pending}
+                setPending={setPending}
+            />
+            <Delete
+                task={expandedWindow.task}
+                pending={pending}
+                setPending={setPending}
+            />
+            */}
             
         </div>
     );

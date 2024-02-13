@@ -46,6 +46,8 @@ function ListDisplay({ pending, setPending, completed, setCompleted, flags }) {
                     setExpandedWindow={setExpandedWindow}
                     pending={pending}
                     setPending={setPending}
+                    completed={completed}
+                    setCompleted={setCompleted}
                 />
             }
         </div>
